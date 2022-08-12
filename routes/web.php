@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,9 +27,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/profile',[ProfileController::class,'create'])->middleware(['auth', 'verified'])->name('backend.profile.create');
 Route::get('/menu',function (){
     return 'wow';
 })->name('menu.test');
-//Route::inertia('/dashboard', 'Dashboard');
+//Route::inertia('/dashboard', 'DashboardContent');
 
 require __DIR__.'/auth.php';

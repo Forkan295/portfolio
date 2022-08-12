@@ -81,7 +81,7 @@ function NestedMenu(props) {
                                                 <span className="menu-bullet">
                                                     <span className="bullet bullet-dot"></span>
                                                 </span>
-                                                <InertiaLink href={route("menu.test")}>
+                                                <InertiaLink href={route("backend.profile.create")}>
                                                     <span className="menu-title">{item.name}</span>
                                                 </InertiaLink>
                                             </span>
