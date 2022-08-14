@@ -1,9 +1,10 @@
 import React from 'react';
+import { InertiaHead,InertiaLink } from '@inertiajs/inertia-react'
 
 function SingleMenu(props) {
     return (
         <div className="menu-item">
-            <a className="menu-link active" href={route("dashboard")}>
+            <InertiaLink className="menu-link active" href="/">
                 <span className="menu-icon">
                     <span className="svg-icon svg-icon-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
@@ -18,7 +19,7 @@ function SingleMenu(props) {
                     </span>
                 </span>
                 <span className="menu-title">Dashboard</span>
-            </a>
+            </InertiaLink>
         </div>
     );
 }
