@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
         "phpsquad/domain-maker": "^1.0",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+      "ext-http": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

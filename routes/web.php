@@ -33,7 +33,7 @@ Route::get('/', function () {
             'phpVersion' => PHP_VERSION,
         ]);
     }
-});
+})->middleware('auth');
 
 //Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/profile',[ProfileController::class,'create'])->middleware(['auth', 'verified'])->name('backend.profile.create');

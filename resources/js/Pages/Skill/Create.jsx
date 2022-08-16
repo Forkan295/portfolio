@@ -1,28 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Main from "@/Layouts/Main";
 import {Field, Form, Formik} from "formik";
 
+
+const TYPES = [
+    'Frontend',
+    'Backend',
+    'Tools',
+    'Design and Architecture'
+];
+
 function Create(props) {
+    let [logoState,setLogoState] = useState({
+        digital_signature:''
+    });
     return (
         <Main title="Users Page">
             <div className="row gy-5 g-xl-8">
                 <div className="col-12">
                     <Formik
-                        initialValues={{name: '', type: '', experience: ''}}
+                        initialValues={{name: '', type: '', experience: '', logo: null}}
                         onSubmit={(values, {setSubmitting}) => {
-                            setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
-                                setSubmitting(false);
-                            }, 400);
+                            console.log(values)
+
+                            const requestOptions = {
+                                method: 'POST',
+                                contentType: 'multipart/form-data',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify(values)
+                            };
+                            fetch(route('skill.store'), requestOptions)
+                                .then(res => res.json())
+                                .then()
                         }}
                     >
-                        {({values,
+                        {({
+                              values,
                               errors,
                               touched,
                               handleChange,
                               handleBlur,
                               handleSubmit,
-                              isSubmitting,}) => (
+                              setFieldValue,
+                              isSubmitting,
+                          }) => (
                             <div className="card">
                                 <div className="card-header card-header-stretch overflow-auto">
                                     <div className="card-title">
@@ -32,7 +53,8 @@ function Create(props) {
                                 <div className="card-body p-lg-17">
                                     <div className="d-flex flex-column flex-lg-row mb-17">
                                         <div className="flex-lg-row-fluid me-0 me-lg-20">
-                                            <Form className="form mb-15 fv-plugins-bootstrap5 fv-plugins-framework"  onSubmit={handleSubmit}>
+                                            <Form className="form mb-15 fv-plugins-bootstrap5 fv-plugins-framework"
+                                                  onSubmit={handleSubmit}>
                                                 <div className="row mb-5">
                                                     <div
                                                         className="col-md-3 offset-md-3 fv-row fv-plugins-icon-container">
@@ -64,10 +86,27 @@ function Create(props) {
                                                                onChange={handleChange}
                                                                value={values.type}
                                                                className="form-control form-control-solid">
-                                                            <option value="red">Red</option>
-                                                            <option value="green">Green</option>
-                                                            <option value="blue">Blue</option>
+                                                            {TYPES.map(function (type) {
+                                                                return (<option key={type} value={type}>{type}</option>)
+                                                            })}
                                                         </Field>
+                                                    </div>
+                                                    <div className="col-md-3 fv-row fv-plugins-icon-container">
+                                                        <label htmlFor=""
+                                                               className="required fs-5 fw-semibold mb-2"> Logo </label>
+                                                        <Field type="file"
+                                                               name="logo"
+                                                               value={''}
+                                                               onChange={(event) => {
+                                                                   const fileReader = new FileReader();
+                                                                   fileReader.onload = () => {
+                                                                       if (fileReader.readyState === 2) {
+                                                                           setFieldValue("logo", fileReader.result);
+                                                                       }
+                                                                   };
+                                                                   fileReader.readAsDataURL(event.target.files[0]);
+                                                               }}
+                                                               className="form-control form-control-solid"/>
                                                     </div>
                                                 </div>
                                                 <div className="row mb-5 mt-12">
@@ -78,7 +117,8 @@ function Create(props) {
                                                                 id="kt_file_manager_settings_submit">
                                                             <span className="indicator-label">Save</span>
                                                             <span className="indicator-progress">Please wait...
-                                                                <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                                <span
+                                                                    className="spinner-border spinner-border-sm align-middle ms-2"></span>
                                                             </span>
                                                         </button>
                                                     </div>
