@@ -3,6 +3,7 @@
 namespace App\Domains\Skill\Http\Controllers;
 
 use App\Domains\Skill\Http\Requests\SkillRequest;
+use App\Domains\Skill\Repositories\SkillRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,6 +22,6 @@ class SkillController extends Controller
 
     public function store(SkillRequest $request)
     {
-        dd($request->all());
+        return resolve(SkillRepository::class)->store($request);
     }
 }

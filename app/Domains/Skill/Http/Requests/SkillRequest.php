@@ -26,7 +26,8 @@ class SkillRequest extends FormRequest
         return [
             'name'=> ['required', 'string'],
             'type'=> ['required'],
-            'experience'=> ['nullable', 'numeric']
+            'experience'=> ['nullable', 'numeric'],
+            'logo'=> ['nullable']
         ];
     }
 }
