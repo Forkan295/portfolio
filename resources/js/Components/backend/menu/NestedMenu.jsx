@@ -23,11 +23,13 @@ function NestedMenu(props) {
             'icon':'',
             "items": [
                 {
-                    "name": "All Skills"
+                    "name": "All Skills",
+                    "route":route("skill.index")
                 },
                 {
                     "name": "Create New",
                     "route":route("skill.create")
+
                 }
             ]
         },

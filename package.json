@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "formik": "^2.2.9",
+        "react-data-table-component": "^7.5.3",
         "yup": "^0.32.11"
     }
 }

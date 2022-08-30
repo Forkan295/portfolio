@@ -12,17 +12,16 @@ function Create(props) {
     const SignUpSchema = Yup.object().shape(
         {
             name: Yup.string()
-                .min(5, 'Should be 5 character long')
+                .min(1, 'Should be 5 character long')
                 .max(15, 'should not exceed 15 characters')
                 .required('Required'),
 
             experience: Yup.string()
-                .min(5, 'Should be 5 character long')
+                .min(1, 'Should be 5 character long')
                 .max(15, 'should not exceed 15 characters')
                 .required('Required'),
 
             type: Yup.string()
-                .email('invalid email address')
                 .required('Required')
         }
     );
